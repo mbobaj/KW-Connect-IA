@@ -1,0 +1,5 @@
+{
+  "name": "Panel de Consumo Eléctrico IoT",
+  "description": "Un dashboard moderno para visualizar el consumo de energía eléctrica en hogares chilenos, mostrando métricas en tiempo real, gráficos históricos y desgloses por electrodoméstico.",
+  "requestFramePermissions": []
+}

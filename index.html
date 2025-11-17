@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -12,16 +11,40 @@
         theme: {
           extend: {
             colors: {
-              'background': '#1a202c',
-              'card': '#2d3748',
-              'primary': '#4a5568',
-              'accent': '#4fd1c5',
-              'text-primary': '#e2e8f0',
-              'text-secondary': '#a0aec0',
+              'background': '#F8F9FA', // A very light gray
+              'surface': '#FFFFFF',
+              'primary': '#4299E1', // A nice blue
+              'on-primary': '#FFFFFF',
+              'primary-container': '#D6EAF8',
+              'on-primary-container': '#1B4F72',
+              'secondary': '#F6AD55', // Orange
+              'text-primary': '#1A202C',
+              'text-secondary': '#4A5568',
+              'outline': '#E2E8F0',
+              'surface-variant': '#F1F5F9',
+              // Status colors
+              'success': '#38A169',
+              'success-container': '#C6F6D5',
+              'on-success-container': '#22543D',
+              'warning': '#D69E2E',
+              'warning-container': '#FEFBC8',
+              'on-warning-container': '#744210',
+              'neutral': '#718096',
+              'neutral-container': '#E2E8F0',
+              'on-neutral-container': '#2D3748',
+            },
+            borderRadius: {
+              'xl': '1rem',
+              '2xl': '1.5rem',
+              '3xl': '2rem',
             },
             fontFamily: {
               sans: ['Inter', 'sans-serif'],
             },
+            boxShadow: {
+              'md': '0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.07)',
+              'lg': '0 10px 15px -3px rgb(0 0 0 / 0.07), 0 4px 6px -4px rgb(0 0 0 / 0.07)',
+            }
           },
         },
       }

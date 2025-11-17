@@ -18,9 +18,9 @@ const ICONS: { [key: string]: React.ReactElement } = {
 
 const KpiCard: React.FC<KpiCardProps> = ({ title, value, unit, subtext, icon }) => {
     return (
-        <div className="bg-card p-6 rounded-xl shadow-lg flex items-start space-x-4 transition-transform transform hover:scale-105 duration-300">
-            <div className="p-3 bg-primary rounded-lg">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="bg-surface p-6 rounded-3xl shadow-md flex items-start space-x-4 transition-shadow duration-300 hover:shadow-lg">
+            <div className="p-3 bg-primary-container rounded-xl">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     {ICONS[icon]}
                 </svg>
             </div>

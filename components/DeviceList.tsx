@@ -19,24 +19,31 @@ const ICONS: { [key: string]: React.ReactElement } = {
 
 const DeviceList: React.FC<DeviceListProps> = ({ devices, onToggle }) => {
 
-    const getStatusPill = (status: 'on' | 'off' | 'standby') => {
+    const getStatusChip = (status: 'on' | 'off' | 'standby') => {
+        let classes = 'px-3 py-1 text-xs font-medium rounded-full inline-block';
+        let text = '';
         switch(status) {
             case 'on':
-                return <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-200 text-green-800">Encendido</span>;
+                classes += ' bg-success-container text-on-success-container';
+                text = 'Encendido';
+                break;
             case 'off':
-                return <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-200 text-red-800">Apagado</span>;
+                classes += ' bg-neutral-container text-on-neutral-container';
+                text = 'Apagado';
+                break;
             case 'standby':
-                return <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-200 text-yellow-800">En Espera</span>;
-            default:
-                return null;
+                classes += ' bg-warning-container text-on-warning-container';
+                text = 'En Espera';
+                break;
         }
+        return <span className={classes}>{text}</span>;
     }
     
     return (
         <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-primary">
-                <thead className="bg-primary">
-                    <tr>
+            <table className="min-w-full">
+                <thead>
+                    <tr className="border-b border-outline">
                         <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">
                             Dispositivo
                         </th>
@@ -51,13 +58,13 @@ const DeviceList: React.FC<DeviceListProps> = ({ devices, onToggle }) => {
                         </th>
                     </tr>
                 </thead>
-                <tbody className="bg-card divide-y divide-primary">
-                    {devices.map((device) => (
-                        <tr key={device.deviceId}>
+                <tbody className="bg-surface">
+                    {devices.map((device, index) => (
+                        <tr key={device.deviceId} className={index !== devices.length - 1 ? 'border-b border-outline' : ''}>
                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-text-primary">
                                 <div className="flex items-center">
-                                    <div className="p-2 bg-primary rounded-lg mr-4 flex-shrink-0">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                                    <div className="p-2 bg-surface-variant rounded-xl mr-4 flex-shrink-0">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                                             {ICONS[device.icon] || ICONS.unknown}
                                         </svg>
                                     </div>
@@ -66,20 +73,21 @@ const DeviceList: React.FC<DeviceListProps> = ({ devices, onToggle }) => {
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-text-secondary">{device.currentWattage}</td>
                             <td className="px-6 py-4 whitespace-nowrap">
-                                {getStatusPill(device.status)}
+                                {getStatusChip(device.status)}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 <button
                                     onClick={() => onToggle(device.deviceId)}
-                                    className={`relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background focus:ring-accent ${
-                                        device.status === 'on' ? 'bg-accent' : 'bg-primary'
+                                    className={`relative inline-flex flex-shrink-0 h-7 w-12 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background focus:ring-primary ${
+                                        device.status === 'on' ? 'bg-primary' : 'bg-neutral-container'
                                     }`}
-                                    aria-pressed={device.status === 'on'}
+                                    role="switch"
+                                    aria-checked={device.status === 'on'}
                                     aria-label={`Controlar ${device.deviceName}`}
                                 >
                                     <span
                                         aria-hidden="true"
-                                        className={`inline-block w-5 h-5 rounded-full bg-white shadow-lg transform ring-0 transition ease-in-out duration-200 ${
+                                        className={`inline-block w-6 h-6 rounded-full bg-white shadow-lg transform ring-0 transition ease-in-out duration-200 ${
                                             device.status === 'on' ? 'translate-x-5' : 'translate-x-0'
                                         }`}
                                     />

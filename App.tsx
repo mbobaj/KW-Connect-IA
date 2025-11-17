@@ -128,7 +128,7 @@ export default function App() {
     };
 
     return (
-        <div className="min-h-screen bg-background font-sans p-4 sm:p-6 lg:p-8">
+        <div className="min-h-screen font-sans p-4 sm:p-6 lg:p-8">
             <Header />
             <main className="mt-8">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
@@ -139,14 +139,14 @@ export default function App() {
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div className="lg:col-span-2 bg-card p-6 rounded-xl shadow-lg">
+                    <div className="lg:col-span-2 bg-surface p-6 rounded-3xl shadow-md">
                         <h2 className="text-xl font-bold text-text-primary mb-4">Historial de Consumo (Últimas 24 Horas)</h2>
                         <div className="h-96">
                            <ConsumptionChart data={aggregatedConsumptionData} />
                         </div>
                     </div>
 
-                    <div className="bg-card p-6 rounded-xl shadow-lg">
+                    <div className="bg-surface p-6 rounded-3xl shadow-md">
                         <h2 className="text-xl font-bold text-text-primary mb-4">Consumo Actual por Dispositivo</h2>
                         <div className="h-80">
                             <ApplianceBreakdownChart data={devices} />
@@ -154,7 +154,7 @@ export default function App() {
                     </div>
                 </div>
 
-                <div className="mt-6 bg-card p-6 rounded-xl shadow-lg">
+                <div className="mt-6 bg-surface p-6 rounded-3xl shadow-md">
                     <h2 className="text-xl font-bold text-text-primary mb-4">Control de Dispositivos</h2>
                     <DeviceList devices={devices} onToggle={toggleDeviceStatus} />
                 </div>
